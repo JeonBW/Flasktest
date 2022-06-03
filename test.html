@@ -1,0 +1,35 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+      <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+      <link rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <py-env>
+        - flask
+        - plotly        
+        - dash
+        - dash_core_components
+        - dash_html_components
+        - pandas
+        - plotly.express
+        - dash.dependencies
+        - plotly.express
+        - re
+        - urlopen
+        - BeautifulSoup
+        - requests
+        - time
+        - json
+        - dash_bootstrap_components
+      </py-env>
+    </head>
+    <body>
+        <py-script src="/main.py"> </py-script>
+        <script type='text/javascript'>
+            function plot(graph, chart) {
+                var figure = JSON.parse(graph)
+                Plotly.newPlot(chart, figure, {});
+            }
+        </script>
+    </body>
+</html>
