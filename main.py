@@ -95,7 +95,7 @@ fig_2 = px.choropleth_mapbox(
    labels={'localocccnt':'Sd Cd'}
 
 )
-fig_2.update_layout(mapbox_layers=[{"below":"traces","sourcetype":"raster","source":["https://api.vworld.kr/req/wmts/1.0.0/FD4FDEAD-76FF-3FF5-A158-F29B2C0A6C7D/Base/{z}/{y}/{x}.png"]}],
+fig_2.update_layout(mapbox_layers=[{"below":"traces","sourcetype":"raster","source":["https://api.vworld.kr/req/wmts/1.0.0/FD4FDEAD-76FF-3FF5-A158-F29B2C0A6C7D/gray/{z}/{y}/{x}.png"]}],
                    showlegend = False,
                    mapbox_accesstoken = "pk.eyJ1Ijoid2pzcXVkZG4iLCJhIjoiY2t3Mnc1YXd6MGpmdDJwcDZqa2ZtNW0yayJ9.TEQ51RPJX8z5bZEUyW5h5w",
                     margin =dict(l=10, t=10, b=10, r=10))
@@ -116,7 +116,7 @@ fig_21 = px.choropleth_mapbox(
    labels={'localocccnt':'Sd Cd'}
 
 )
-fig_21.update_layout(mapbox_layers=[{"below":"traces","sourcetype":"raster","source":["https://api.vworld.kr/req/wmts/1.0.0/FD4FDEAD-76FF-3FF5-A158-F29B2C0A6C7D/Base/{z}/{y}/{x}.png"]}],
+fig_21.update_layout(mapbox_layers=[{"below":"traces","sourcetype":"raster","source":["https://api.vworld.kr/req/wmts/1.0.0/FD4FDEAD-76FF-3FF5-A158-F29B2C0A6C7D/gray/{z}/{y}/{x}.png"]}],
                    showlegend = False,
                    mapbox_accesstoken = "pk.eyJ1Ijoid2pzcXVkZG4iLCJhIjoiY2t3Mnc1YXd6MGpmdDJwcDZqa2ZtNW0yayJ9.TEQ51RPJX8z5bZEUyW5h5w",
                      margin =dict(l=10, t=10, b=10, r=10))
@@ -518,30 +518,30 @@ def update_map(map_dt, clickData, pop_date=None):
                    f"{round(pop_date.loc[pop_date['Value'].idxmin()]['Value'], 2)}"' %'
 
 
-# @app.callback([Output('map', 'clickData'),
-#                Output('line_chart_2', 'clickData')],
-# Input('reset', 'n_clicks'))
-#
-# def reset_clickData(n_clicks):
-#     sgg_cd = " 시도"
-#     ctx = dash.callback_context
-#     a = max(pop["Date"].unique())
-#     pop_date = pop[pop['Date'] == a][pop['Category1'] == '고령인구비율'][pop["Sgg Nm"] == "전체"].reset_index(drop=True)
-#     map_dt = "전국"
-#     pop_1 = pop[pop["Category1"] == "고령인구비율"]
-#     pop_2 = pop_1[pop_1["Sgg Nm"] == "전체"]
-#     pop_3 = pop_1[pop_1["Sgg Nm"] == "전국"]
-#     pop_4 = pd.concat([pop_2, pop_3])
-#     pop_map = pop_4[pop_4["Sd Nm"] == "전국"][["Sd Nm", "Date", "Value"]]
-#     fig_7 = px.line(pop_map, x=pop_map["Date"], y=pop_map["Value"], markers=True)
-#     Sd_1 = round(pop_map.reset_index()["Value"].tolist()[-1], 2)
-#     fig_7.add_annotation(x=max(pop_map["Date"]), y=Sd_1, showarrow=False, text=f"{map_dt}{Sd_1}%",
-#                          font=dict(color="#345884", size=12, family="bold"))
-#     fig_7.layout.plot_bgcolor = "white"
-#     fig_7.update_layout(yaxis_title=None, xaxis_title=None)
-#
-#     return None,\
-#            fig_7
+@app.callback([Output('map', 'clickData'),
+               Output('line_chart_2', 'clickData')],
+Input('reset', 'n_clicks'))
+
+def reset_clickData(n_clicks):
+    sgg_cd = " 시도"
+    ctx = dash.callback_context
+    a = max(pop["Date"].unique())
+    pop_date = pop[pop['Date'] == a][pop['Category1'] == '고령인구비율'][pop["Sgg Nm"] == "전체"].reset_index(drop=True)
+    map_dt = "전국"
+    pop_1 = pop[pop["Category1"] == "고령인구비율"]
+    pop_2 = pop_1[pop_1["Sgg Nm"] == "전체"]
+    pop_3 = pop_1[pop_1["Sgg Nm"] == "전국"]
+    pop_4 = pd.concat([pop_2, pop_3])
+    pop_map = pop_4[pop_4["Sd Nm"] == "전국"][["Sd Nm", "Date", "Value"]]
+    fig_7 = px.line(pop_map, x=pop_map["Date"], y=pop_map["Value"], markers=True)
+    Sd_1 = round(pop_map.reset_index()["Value"].tolist()[-1], 2)
+    fig_7.add_annotation(x=max(pop_map["Date"]), y=Sd_1, showarrow=False, text=f"{map_dt}{Sd_1}%",
+                         font=dict(color="#345884", size=12, family="bold"))
+    fig_7.layout.plot_bgcolor = "white"
+    fig_7.update_layout(yaxis_title=None, xaxis_title=None)
+
+    return None,\
+           fig_7
 
 #=================tab 구분선===========================================
 
@@ -762,38 +762,38 @@ def update_map( map_dt, map_dt2, clickData):
                    min_date2_1, \
                    min_date2_2
 
-# @app.callback([Output('map_2','clickData'),
-#                Output('map__2','clickData'),
-#                Output('line_chart_3','clickData')],
-#                [Input('reset_2',"n_clicks")])
-#
-# def reset_2_clickData(n_clicks):
-#     a = max(pop["Date"].unique())
-#     map_dt = "전국"
-#     map_dt2 = "전국"
-#     sd_sgg_2 = " 시도"
-#     pop_date = pop[pop['Date'] == a][pop['Category1'] == '고령인구비율'][pop["Sgg Nm"] == "전체"].reset_index(drop=True)
-#     pop_1 = pop[pop["Category1"] == "고령인구비율"]
-#     pop_2 = pop_1[pop_1["Sgg Nm"] == "전체"]
-#     pop_3 = pop_1[pop_1["Sgg Nm"] == "전국"]
-#     pop_4 = pd.concat([pop_2, pop_3])
-#     pop_map = pop_4[pop_4["Sd Nm"] == map_dt][["Sd Nm", "Date", "Value"]]
-#     pop_map4 = pop_4[pop_4["Sd Nm"] == map_dt2][["Sd Nm", "Date", "Value"]]
-#     fig_7 = go.Figure({"layout": {"uirevision": True, "margin": dict(t=60)}})
-#     fig_7.add_trace(go.Scatter(x=pop_map["Date"], y=pop_map["Value"], mode='lines+markers', showlegend=False))
-#     fig_7.add_trace(go.Scatter(x=pop_map4["Date"], y=pop_map4["Value"], mode='lines+markers', showlegend=False))
-#     # fig_7 = px.line(pop_map, x=pop_map["Date"], y=pop_map["Value"], markers=True)
-#     Sd_1 = round(pop_map.reset_index()["Value"].tolist()[-1], 2)
-#     fig_7.add_annotation(x=max(pop_map["Date"]), y=Sd_1, showarrow=False, text=f"{map_dt}{Sd_1}%",
-#                          font=dict(color="#345884", size=12, family="bold"))
-#     Sd_2 = round(pop_map4.reset_index()["Value"].tolist()[-1], 2)
-#     fig_7.add_annotation(x=max(pop_map4["Date"]), y=Sd_2, showarrow=False, text=f"{map_dt2}{Sd_2}%",
-#                          font=dict(color="#345884", size=12, family="bold"))
-#     fig_7.layout.plot_bgcolor = "white"
-#
-#     return None,\
-#            None,\
-#            fig_7
+@app.callback([Output('map_2','clickData'),
+               Output('map__2','clickData'),
+               Output('line_chart_3','clickData')],
+               [Input('reset_2',"n_clicks")])
+
+def reset_2_clickData(n_clicks):
+    a = max(pop["Date"].unique())
+    map_dt = "전국"
+    map_dt2 = "전국"
+    sd_sgg_2 = " 시도"
+    pop_date = pop[pop['Date'] == a][pop['Category1'] == '고령인구비율'][pop["Sgg Nm"] == "전체"].reset_index(drop=True)
+    pop_1 = pop[pop["Category1"] == "고령인구비율"]
+    pop_2 = pop_1[pop_1["Sgg Nm"] == "전체"]
+    pop_3 = pop_1[pop_1["Sgg Nm"] == "전국"]
+    pop_4 = pd.concat([pop_2, pop_3])
+    pop_map = pop_4[pop_4["Sd Nm"] == map_dt][["Sd Nm", "Date", "Value"]]
+    pop_map4 = pop_4[pop_4["Sd Nm"] == map_dt2][["Sd Nm", "Date", "Value"]]
+    fig_7 = go.Figure({"layout": {"uirevision": True, "margin": dict(t=60)}})
+    fig_7.add_trace(go.Scatter(x=pop_map["Date"], y=pop_map["Value"], mode='lines+markers', showlegend=False))
+    fig_7.add_trace(go.Scatter(x=pop_map4["Date"], y=pop_map4["Value"], mode='lines+markers', showlegend=False))
+    # fig_7 = px.line(pop_map, x=pop_map["Date"], y=pop_map["Value"], markers=True)
+    Sd_1 = round(pop_map.reset_index()["Value"].tolist()[-1], 2)
+    fig_7.add_annotation(x=max(pop_map["Date"]), y=Sd_1, showarrow=False, text=f"{map_dt}{Sd_1}%",
+                         font=dict(color="#345884", size=12, family="bold"))
+    Sd_2 = round(pop_map4.reset_index()["Value"].tolist()[-1], 2)
+    fig_7.add_annotation(x=max(pop_map4["Date"]), y=Sd_2, showarrow=False, text=f"{map_dt2}{Sd_2}%",
+                         font=dict(color="#345884", size=12, family="bold"))
+    fig_7.layout.plot_bgcolor = "white"
+
+    return None,\
+           None,\
+           fig_7
 
 
 
