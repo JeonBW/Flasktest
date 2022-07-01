@@ -73,7 +73,7 @@ fig2 = px.choropleth_mapbox(
    labels={'localocccnt':'Sd Cd'},
 
 )
-fig2.update_layout(mapbox_layers=[{"below":"traces","sourcetype":"raster","source":["https://api.vworld.kr/req/wmts/1.0.0/FD4FDEAD-76FF-3FF5-A158-F29B2C0A6C7D/Base/{z}/{y}/{x}.png"]}],
+fig2.update_layout(mapbox_layers=[{"below":"traces","sourcetype":"raster","source":["https://api.vworld.kr/req/wmts/1.0.0/FD4FDEAD-76FF-3FF5-A158-F29B2C0A6C7D/gray/{z}/{y}/{x}.png"]}],
                    showlegend = False,
                    mapbox_accesstoken = "pk.eyJ1Ijoid2pzcXVkZG4iLCJhIjoiY2t3Mnc1YXd6MGpmdDJwcDZqa2ZtNW0yayJ9.TEQ51RPJX8z5bZEUyW5h5w",
                    #shapes=[{"x0": 0,"y0": 0,"x1": 1,"y1": 1,}],
@@ -86,7 +86,7 @@ fig_2 = px.choropleth_mapbox(
     #color="Sd Nm",
    color_continuous_scale=px.colors.sequential.Redor,
    # featureidkey="properties.CTP_KOR_NM", # featureidkey를 사용하여 id 값을 갖는 키값 지정
-   mapbox_style="carto-positron",
+   mapbox_style="white-bg",
    zoom=4.5,
    center = {"lat": 35.757981, "lon": 127.661132},
    opacity=0.6,
@@ -107,7 +107,7 @@ fig_21 = px.choropleth_mapbox(
     #color="Sd Nm",
    color_continuous_scale=px.colors.sequential.Redor,
    # featureidkey="properties.CTP_KOR_NM", # featureidkey를 사용하여 id 값을 갖는 키값 지정
-   # mapbox_style="carto-positron",
+   mapbox_style="white-bg",
    zoom=4.5,
    center = {"lat": 35.757981, "lon": 127.661132},
    opacity=0.6,
