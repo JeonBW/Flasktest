@@ -65,7 +65,7 @@ fig2 = px.choropleth_mapbox(
    color_continuous_scale=px.colors.sequential.Mint,
    # featureidkey="properties.CTP_KOR_NM", # featureidkey를 사용하여 id 값을 갖는 키값 지정
    mapbox_style="white-bg",
-   zoom=4.5,
+   zoom=5,
    center = {"lat": 35.757981, "lon": 127.661132},
    opacity=0.6,
     #width= 800,
@@ -140,6 +140,9 @@ dgmax_x = max(dg_merge["65세이상인구"].unique())
 dgmin_y = min(dg_merge["고령인구비율"].unique())
 dgmax_y = max(dg_merge["고령인구비율"].unique())
 animations = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
+                                  size="전체인구",
+                                  color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
+animations_2 = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
                                   size="전체인구",
                                   color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
 
@@ -294,6 +297,14 @@ card_5 = dbc.Card([
         dcc.Loading(dcc.Graph(figure=animations),type="cube")
 ])])
 
+card_6 = dbc.Card([
+    dbc.CardBody(style = {"box-shadow":"7px 7px 3px grey", "border-radius": "0.5em"}, children=[
+        html.H4("애니메이션 테스트"),
+        html.P("65-고령",id="selection_2"),
+        dcc.Loading(dcc.Graph(figure=animations_2),type="cube")
+])])
+
+
 
 tab1 = dbc.Card(
         dbc.CardBody(style = {"box-shadow":"7px 7px 3px grey", "border-radius": "0.5em"}, children=[
@@ -312,7 +323,9 @@ tab2 = dbc.Card(
 html.Button("모든 선택 취소", id="reset_2", style={ "border":"2px solid #2a5783", "backgroundColor":"white","font-weight":"bold"}),
             dbc.Row(card_2),
             html.Br(),
-            card_4
+            card_4,
+            html.Br(),
+            card_6
             # dbc.Col([
             #     html.Label("'고령인구비율' 연월별 현황", style={"float": "left",'font-weight': "bold"}),
             #     html.Label("*연월선택시 해당 연월의 값으로 변경", style={"float": "right", "display": "inline-block", })]),
