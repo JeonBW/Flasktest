@@ -54,7 +54,7 @@ for idx, _ in enumerate(geo['features']):
 #fig = px.line(pop3, x="Date", y=pop3[pop3["Sd Nm"]==s_sdnm]["Value"], markers=True)
 #fig.add_annotation(x=max(pop3["Date"]), y=17, showarrow=False, text="전국{}%".format(round(pop3.reset_index()["Value"].tolist()[-1]),3),font=dict(color="#345884", size=12, family="bold"))
 
-
+print("test")
 
 
 fig2 = px.choropleth_mapbox(
