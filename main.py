@@ -178,7 +178,7 @@ card_1 = dbc.Card([
         html.Label(style={'font-weight':"bold","font-size":"20pt"}, children=["지역 선택"]),
         html.Hr(style={"border": "solid 1px"}, children=[]),
 #        html.Div([dcc.Dropdown(id = "s_sdnm", value="전국",options=[{'label':c, 'value':c} for c in (pop["Sd Nm"].unique())])]),
-        html.Div([dcc.Graph(id="map",figure=fig2,style={"width":"100%"})]),
+        html.Div([dcc.Graph(id="map",figure=fig2)]),
     ]),
 
     html.Div([" "], style={"float":"left","width":"4%"}),
