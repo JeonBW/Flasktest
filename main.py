@@ -274,7 +274,7 @@ card_3 = dbc.Card([
         dbc.Col([
                 html.Label("'고령인구비율' 연월별 현황",style={'font-weight': "bold", "font-size":"20pt"}),
                 html.Label("*연월선택시 해당 연월의 값으로 변경", style={"float":"right", "display": "inline-block", "font-size":"10pt"})]),
-            dbc.Row(dcc.Graph(id="line_chart_2"))
+            dcc.Loading(dcc.Graph(id="line_chart_2"),type="circle")
     ])
 ])
 
@@ -284,7 +284,7 @@ card_4 = dbc.Card([
         dbc.Col([
             html.Label("'고령인구비율' 연월별 현황", style={ 'font-weight': "bold", "font-size":"20pt"}),
             html.Label("*연월선택시 해당 연월의 값으로 변경", style={"float": "right", "display": "inline-block", "font-size":"10pt" })]),
-        dbc.Row([dcc.Graph(id="line_chart_3")])
+        dcc.Loading([dcc.Graph(id="line_chart_3")],type="circle")
     ])
 ])
 
@@ -808,7 +808,7 @@ def dag_1 (selection):
                    color="Sd Nm", log_x=True, size_max=55, range_x=[2000, 200000], range_y=[5, 50],
                    hover_name="SD_SGG"),
                  '지역_고령': px.bar(dg_merge, x="Sd Nm", y="65세이상인구", animation_frame="Date", animation_group="Sgg Nm", color="Sd Nm",
-                                 range_y=[0,3000000])}
+                                 range_y=[0,2000000])}
 
     return animation[selection]
 
@@ -821,7 +821,7 @@ def dag_1 (selection_2):
                    color="Sd Nm", log_x=True, size_max=55, range_x=[2000, 200000], range_y=[5, 50],
                    hover_name="SD_SGG"),
                  '지역_고령': px.bar(dg_merge, x="Sd Nm", y="65세이상인구", animation_frame="Date", animation_group="Sgg Nm", color="Sd Nm",
-                                 range_y=[0,3000000])}
+                                 range_y=[0,2000000])}
     return animation_2[selection_2]
 
 
