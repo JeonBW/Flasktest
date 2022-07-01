@@ -144,10 +144,6 @@ animations = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인�
                                   color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
 
 
-dg_merge["SD SGG"] = dg_merge["Sd Nm"] + " " + dg_merge["Sgg Nm"]
-print(dg_merge)
-
-
 
 nav = dbc.Row([
         dbc.Col([
