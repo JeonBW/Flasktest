@@ -206,14 +206,14 @@ card_1 = dbc.Card([
         html.Div(style={"border":"2px solid #f5f5f5","float":"left", "width":"48%", "backgroundColor":"#f3f6f8", "height":"110pt", "top": "5%" , "box-shadow":"5px 5px 3px grey", "border-radius": "0.5em"}, children=[
             html.H1([html.Span('최대',style={"color":'#2a5783'}), html.Span(id="date_card_3")], style={"font-weight":"bold", "text-align":"center"}),
 
-            html.Div([f"{pop4.loc[pop4['Value'].idxmax()]['Sd Nm']}"], style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_4"),
-            html.Div([f"{round(pop4.loc[pop4['Value'].idxmax()]['Value'],2)}" '%'],style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_5")
+            dcc.Loading(html.Div([f"{pop4.loc[pop4['Value'].idxmax()]['Sd Nm']}"], style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_4"), type="dot"),
+            dcc.Loading(html.Div([f"{round(pop4.loc[pop4['Value'].idxmax()]['Value'],2)}" '%'],style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_5"), type="dot")
         ]),
 
         html.Div(style={"border":"2px solid #f3f6f8","float":"left", "width":"48%", "margin-left":"2%","backgroundColor":"#f3f6f8", "height":"110pt", "top": "5%", "box-shadow":"5px 5px 3px grey", "border-radius": "0.5em"}, children=[
             html.H1([html.Span('최소', style={"color": '#f29131'}), html.Span(id="date_card_6")], style={"font-weight": "bold", "text-align": "center"}),
-            html.Div([f"{pop4.loc[pop4['Value'].idxmin()]['Sd Nm']}"],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_7"),
-            html.Div([f"{round(pop4.loc[pop4['Value'].idxmin()]['Value'],2)}"' %'],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_8")
+            dcc.Loading(html.Div([f"{pop4.loc[pop4['Value'].idxmin()]['Sd Nm']}"],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_7"), type="dot"),
+            dcc.Loading(html.Div([f"{round(pop4.loc[pop4['Value'].idxmin()]['Value'],2)}"' %'],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"},id = "date_card_8"), type="dot")
         ])
     ]),
 
@@ -256,14 +256,14 @@ card_2 = dbc.Card([
 
         html.Div(style={"border":"2px solid #f5f5f5","float":"left", "width":"48%", "backgroundColor":"#f3f6f8", "height":"110pt", "top": "5%" , "box-shadow":"5px 5px 3px grey", "border-radius": "0.5em"}, children=[
             html.H1([html.Span('최대',style={"color":'#2a5783'}), html.Span(id="date_card2_3")], style={"font-weight":"bold", "text-align":"center"}),
-            html.Div([f"{pop4.loc[pop4['Value'].idxmax()]['Sd Nm']}"], style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"}, id="date_card2_4"),
-            html.Div([f"{round(pop4.loc[pop4['Value'].idxmax()]['Value'],2)}" '%'],style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"},id="date_card2_5")
+            dcc.Loading(html.Div([f"{pop4.loc[pop4['Value'].idxmax()]['Sd Nm']}"], style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"}, id="date_card2_4"), type="dot"),
+            dcc.Loading(html.Div([f"{round(pop4.loc[pop4['Value'].idxmax()]['Value'],2)}" '%'],style={"text-align":"center","bottom":"-3%", "position":"relative","font-size":"15pt"},id="date_card2_5"), type="dot")
         ]),
 
         html.Div(style={"border":"2px solid #f3f6f8","float":"left", "width":"48%", "margin-left":"2%","backgroundColor":"#f3f6f8", "height":"110pt", "top": "5%", "box-shadow":"5px 5px 3px grey", "border-radius": "0.5em"}, children=[
             html.H1([html.Span('최소', style={"color": '#f29131'}), html.Span(id="date_card2_6")], style={"font-weight": "bold", "text-align": "center"}),
-            html.Div([f"{pop4.loc[pop4['Value'].idxmin()]['Sd Nm']}"],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"},id="date_card2_7"),
-            html.Div([f"{round(pop4.loc[pop4['Value'].idxmin()]['Value'],2)}"' %'],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"}, id="date_card2_8")
+            dcc.Loading(html.Div([f"{pop4.loc[pop4['Value'].idxmin()]['Sd Nm']}"],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"},id="date_card2_7"), type="dot"),
+            dcc.Loading(html.Div([f"{round(pop4.loc[pop4['Value'].idxmin()]['Value'],2)}"' %'],style={"text-align": "center","bottom":"-3%", "position":"relative","font-size":"15pt"}, id="date_card2_8"), type="dot")
         ])
     ]),
 
