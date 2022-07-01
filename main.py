@@ -139,12 +139,12 @@ dgmin_x = min(dg_merge["65세이상인구"].unique())
 dgmax_x = max(dg_merge["65세이상인구"].unique())
 dgmin_y = min(dg_merge["고령인구비율"].unique())
 dgmax_y = max(dg_merge["고령인구비율"].unique())
-animations = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
-                                  size="전체인구",
-                                  color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
-animations_2 = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
-                                  size="전체인구",
-                                  color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
+# animations = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
+#                                   size="전체인구",
+#                                   color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
+# animations_2 = go.Figure(px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
+#                                   size="전체인구",
+#                                   color="Sd Nm", log_x=True, size_max=55,range_x=[2000, 200000], range_y=[5, 50], hover_name="SD_SGG" ))
 
 
 
@@ -293,15 +293,19 @@ card_4 = dbc.Card([
 card_5 = dbc.Card([
     dbc.CardBody(style = {"box-shadow":"7px 7px 3px grey", "border-radius": "0.5em"}, children=[
         html.H4("애니메이션 테스트"),
-        html.P("65-고령",id="selection"),
-        dcc.Loading(dcc.Graph(figure=animations),type="cube")
+        dcc.RadioItems(id="selection",
+                       options=[{"label":i, "value":i}for i in ["65_고령","지역_고령"]],
+                       value="65_고령"),
+        dcc.Loading(dcc.Graph(id="animation"),type="cube")
 ])])
 
 card_6 = dbc.Card([
     dbc.CardBody(style = {"box-shadow":"7px 7px 3px grey", "border-radius": "0.5em"}, children=[
         html.H4("애니메이션 테스트"),
-        html.P("65-고령",id="selection_2"),
-        dcc.Loading(dcc.Graph(figure=animations_2),type="cube")
+        dcc.RadioItems(id="selection_2",
+                       options=[{"label":i, "value":i}for i in ["65_고령","지역_고령"]],
+                       value="65_고령"),
+        dcc.Loading(dcc.Graph(id="animation_2"),type="cube")
 ])])
 
 
@@ -794,6 +798,38 @@ def reset_2_clickData(n_clicks):
     return None,\
            None,\
            fig_7
+
+
+@app.callback(Output("animation","figure"),
+              Input("selection","value"))
+def dag_1 (selection):
+    animation ={'65_고령': px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
+                   size="전체인구",
+                   color="Sd Nm", log_x=True, size_max=55, range_x=[2000, 200000], range_y=[5, 50],
+                   hover_name="SD_SGG"),
+                 '지역_고령': px.bar(dg_merge, x="Sd Nm", y="65세이상인구", animation_frame="Date", animation_group="Sgg Nm", color="Sd Nm",
+                                 range_y=[0,3000000])}
+
+    return animation[selection]
+
+
+@app.callback(Output("animation_2","figure"),
+              Input("selection_2","value"))
+def dag_1 (selection_2):
+    animation_2 ={'65_고령': px.scatter(dg_merge, x="65세이상인구", y="고령인구비율", animation_frame="Date", animation_group="Sgg Nm",
+                   size="전체인구",
+                   color="Sd Nm", log_x=True, size_max=55, range_x=[2000, 200000], range_y=[5, 50],
+                   hover_name="SD_SGG"),
+                 '지역_고령': px.bar(dg_merge, x="Sd Nm", y="65세이상인구", animation_frame="Date", animation_group="Sgg Nm", color="Sd Nm",
+                                 range_y=[0,3000000])}
+    return animation_2[selection_2]
+
+
+
+
+
+
+
 
 
 
