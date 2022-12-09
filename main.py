@@ -25,6 +25,7 @@ import datetime
 pop = pd.read_csv("고령인구비율.csv", encoding="euc-kr")
 
 
+
 min_date = min(pop["Date"].unique())
 max_date = max(pop["Date"].unique())
 
